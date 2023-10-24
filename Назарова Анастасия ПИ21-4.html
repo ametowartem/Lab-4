@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #484548">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #484548">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Главная <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Книги</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Меню
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Автор</a>
+                    <a class="dropdown-item" href="#">Издательсов</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Книга</a>
+                </div>
+            </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Поиск..." aria-label="Поиск">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+        </form>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #b45bb4; margin-top: 20px; padding: 15px;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarBottom"
+            aria-controls="navbarBottom" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #484548;">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarBottom" style="margin-left: 35%">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Дополнительное меню </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Новые</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Популярные</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+<div id="app"></div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js" data-presets="react,es2015,stage-2"
+        data-plugins="transform-modules-umd"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react?dev",
+        "react-dom/client": "https://esm.sh/react-dom/client?dev"
+      }
+    }
+</script>
+<script type="text/babel" data-type="module">
+
+    import React from 'react';
+    import { createRoot } from 'react-dom/client';
+
+    function Avatar({ person, size=150 }) {
+        return (
+            <div className="avatar-container">
+                <img
+                    className="avatar"
+                    src={person.imageId}
+                    alt={person.name}
+                    width={size}
+                    height={size+80}
+                />
+                <p className="avatar-name">{person.name}</p>
+            </div>
+        );
+    }
+    function Avatar2({ person, size=200 }) {
+        return (
+            <div className="avatar-container">
+                <img
+                    className="avatar"
+                    src={person.imageId}
+                    alt={person.name}
+                    width={size}
+                    height={size+100}
+                />
+                <p className="avatar-name">{person.name}</p>
+            </div>
+        );
+    }
+    function Card({children}){
+        return (
+            <div className="avatar-row">
+                {children}
+            </div>
+        )
+    }
+    function Profile() {
+        return (
+            <div>
+                <h1>Бестселлеры</h1>
+                <Card>
+                    <Avatar
+                        person={{
+                            name: 'Тайная комната',
+                            imageId:
+                                'https://simg.marwin.kz/media/catalog/product/cache/41deb699a7fea062a8915debbbb0442c/f/u/fullimage_19_85.jpg'
+                        }}
+                    />
+                    <Avatar
+                        person={{
+                            name: 'Кубок огня',
+                            imageId:
+                                'https://simg.marwin.kz/media/catalog/product/cache/41deb699a7fea062a8915debbbb0442c/f/u/fullimage_19_93.jpg'
+                        }}
+                    />
+                    <Avatar
+                        person={{
+                            name: 'Дары смерти',
+                            imageId:
+                                'https://simg.marwin.kz/media/catalog/product/cache/41deb699a7fea062a8915debbbb0442c/1/0/1028910_0.jpg'
+                        }}
+                    />
+                    <Avatar
+                        person={{
+                            name: 'Орден Феникса',
+                            imageId:
+                                'https://simg.marwin.kz/media/catalog/product/cache/41deb699a7fea062a8915debbbb0442c/1/0/104375_0.jpg'
+                        }}
+                    />
+                </Card>
+                <h1>Новинки</h1>
+                <div className="avatar-row">
+                    <Avatar2
+                        person={{
+                            name: 'Кубок огня',
+                            imageId:
+                                'https://simg.marwin.kz/media/catalog/product/cache/41deb699a7fea062a8915debbbb0442c/f/u/fullimage_19_93.jpg'
+                        }}
+                    />
+                    <Avatar2
+                        person={{
+                            name: 'Дары смерти',
+                            imageId:
+                                'https://simg.marwin.kz/media/catalog/product/cache/41deb699a7fea062a8915debbbb0442c/1/0/1028910_0.jpg'
+                        }}
+                    />
+                    <Avatar2
+                        person={{
+                            name: 'Орден Феникса',
+                            imageId:
+                                'https://simg.marwin.kz/media/catalog/product/cache/41deb699a7fea062a8915debbbb0442c/1/0/104375_0.jpg'
+                        }}
+                    />
+                </div>
+            </div>
+        );
+    }
+
+    createRoot(document.getElementById('app')).render(<Profile />);
+</script>
+<style>
+
+    h1{
+        padding-left: 40%;
+    }
+
+
+    .avatar-row {
+        display: flex;
+        margin-bottom: 5%;
+        justify-content: space-around;
+    }
+
+    .avatar-container {
+        margin-right: 10px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color: #dfdcf5;
+    }
+
+    th,
+    td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f3ddf6;
+    }
+
+
+</style>
+</body>
+</html>
