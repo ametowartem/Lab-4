@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+<div id="root"></div>
+</body>
+
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react?dev",
+    "react-dom/client": "https://esm.sh/react-dom/client?dev"
+  }
+}
+
+</script>
+
+
+<script type="text/babel" data-type="module">
+    import React, {StrictMode, useEffect, useState} from 'react';
+    import {createRoot} from 'react-dom/client';
+
+
+    function HeaderPunkt({ name }) {
+        return (
+            <li className="nav-item">
+                <a className="nav-link" href="#">{name}</a>
+            </li>
+        );
+    }
+
+    function Header() {
+        return (
+            <>
+
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <div className="container-fluid">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                <HeaderPunkt name={"Книги"}></HeaderPunkt>
+                                <HeaderPunkt name={"Статьи"}></HeaderPunkt>
+                                <HeaderPunkt name={"Об издательстве"}></HeaderPunkt>
+                            </ul>
+
+                        </div>
+                        <form className="form-inline">
+                            <input className="form-control mr-sm-2" type="search" placeholder="Search"
+                                   aria-label="Search"></input>
+                        </form>
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <HeaderPunkt name={"Настройки"}></HeaderPunkt>
+                        </ul>
+                        <div className="d-flex align-items-center">
+
+                            <a
+                                className=" d-flex align-items-center hidden-arrow"
+                                href="#"
+                                id="navbarDropdownMenuAvatar"
+                                role="button"
+                                data-mdb-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                <img
+                                    src="https://avatars.githubusercontent.com/u/113033685?v=4"
+                                    className="rounded-circle"
+                                    height="25"
+                                    alt="My photo"
+                                    loading="lazy"
+                                />
+                            </a>
+
+                        </div>
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <button type="button" className="btn-close" aria-label="Close"></button>
+                        </ul>
+                    </div>
+                </nav>
+            </>
+        );
+    }
+
+
+    function Card({children}) {
+        return(
+            <div className="card">
+                {children}
+            </div>
+        )
+    }
+
+    function Book({ link, price, size=250}) {
+        return (
+            <>
+                <div>
+                <img
+                    src={link.link}
+                    alt={link.alt}
+                    width={size}
+                    height={size}
+                />
+
+                </div>
+                <center>
+                <h6>
+                    {link.alt}
+                </h6>
+                    <label>
+                        {price}
+                    </label>
+                </center>
+                <button type="button" className="btn btn-success">Заказать</button>
+                </>
+        );
+    }
+
+    let App = function List() {
+
+        return (<>
+
+            <Header/>
+            <center><h1>E-Library</h1></center>
+            <center><h2>ТОП продаж</h2></center>
+            <div className="flex-container">
+            <Card>
+                <Book link={{link: 'https://cdn.eksmo.ru/v2/ITD000000000827683/COVER/cover1__w820.jpg',
+                                        alt: 'Психология влияния.'
+                }} price={299}></Book>
+            </Card>
+            <Card>
+                <Book link={{link: 'https://cdn.eksmo.ru/v2/ITD000000000859929/COVER/cover1__w820.jpg',
+                    alt: 'Кафе на краю земли. '
+                }} price={499}></Book>
+            </Card>
+            <Card>
+                <Book link={{link: 'https://cdn.eksmo.ru/v2/ITD000000000826660/COVER/cover1__w820.jpg',
+                    alt: 'НИ СЫ.'
+                }} price={450}></Book>
+            </Card>
+            <Card>
+                <Book link={{link: 'https://cdn.eksmo.ru/v2/ITD000000000574646/COVER/cover1__w820.jpg',
+                    alt: 'Иди туда, где страшно.'
+                }} price={899}></Book>
+            </Card>
+            <Card>
+                <Book link={{link: 'https://cdn.eksmo.ru/v2/ITD000000001011588/COVER/cover1__w820.jpg',
+                    alt: 'The Food Lab.'
+                }} price={300}></Book>
+            </Card>
+            </div>
+            <br></br>
+            <center><h2>Классика</h2></center>
+            <div className="flex-container">
+                <Card>
+                    <Book link={{link: 'https://cdn.eksmo.ru/v2/ITD000000001264615/COVER/cover1__w820.jpg',
+                        alt: 'Капитал.'
+                    }} price={1899} size={200}></Book>
+                </Card>
+                <Card>
+                    <Book link={{link: 'https://cdn.img-gorod.ru/310x500/nomenclature/24/652/2465295.jpg',
+                        alt: 'Преступление и наказание.'
+                    }} price={499} size={200}></Book>
+                </Card>
+                <Card>
+                    <Book link={{link: 'https://cdn.img-gorod.ru/310x500/nomenclature/29/422/2942200.jpg',
+                        alt: 'Сказки. Поэмы.'
+                    }} price={499} size={200}></Book>
+                </Card>
+                <Card>
+                    <Book link={{link: 'https://cdn.img-gorod.ru/310x500/nomenclature/24/591/2459100_1.jpg',
+                        alt: 'Мертвые души: поэма.'
+                    }} price={999} size={200}></Book>
+                </Card>
+                <Card>
+                    <Book link={{link: 'https://cdn.img-gorod.ru/310x500/nomenclature/29/692/2969210.jpg',
+                        alt: 'Вий.'
+                    }} price={999} size={200}></Book>
+                </Card>
+            </div>
+        </>);
+    }
+
+
+    const root = createRoot(document.getElementById('root'));
+    root.render(
+        <StrictMode>
+            <App/>
+        </StrictMode>
+    );
+</script>
+
+
+<style>
+
+    body {
+    }
+
+.flex-container {
+
+    display: flex;
+
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+
+    height: 100%;
+    padding: 15px;
+    gap: 5px;
+
+}
+
+.flex-container > div {
+    background: #FFFAFA;
+    border: 1px solid #F5F5F5;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+</style>
+
+
+</html>
