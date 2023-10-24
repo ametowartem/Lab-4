@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <title>Книжечки</title>
+  <style>
+    body{
+        background-color: #faf0dd;
+    }
+
+    .product-card {
+        width: 18rem;
+        height: 36rem;
+    }
+
+     .card-img-top {
+        max-width: 70%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .navbar-custom {
+        background-color: #60916b;
+    }
+
+    .navbar a {
+        color: white;
+    }
+</style>
+</head>
+
+<body>
+  <div id="navigation"></div>
+  <div id="books"></div>
+
+
+
+</body>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react?dev",
+    "react-dom/client": "https://esm.sh/react-dom/client?dev"
+  }
+}
+</script>
+<script type="text/babel" data-type="module">
+  import React, { StrictMode, useState } from 'react';
+  import { createRoot } from 'react-dom/client';
+  import ReactDOM from 'react-dom/client';
+
+
+  function NavigationBar() {
+    return (
+      <nav className="navbar navbar-expand-lg navbar-custom " >
+        <div className="container-fluid">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i className="fas fa-bars"></i>
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <a className="navbar-brand mt-2 mt-lg-0" href="#">
+              <img
+                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTExIiBoZWlnaHQ9IjI3IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xMDYuNDUyIDEzLjcyYzAtNi4wOS0yLjk1My05LjI1NC01LjYzOS05LjI1NC0xLjUwMyAwLTIuNDQyLjY3My00LjIxOCAyLjczNi0xLjEyMSAxLjMwNy0zLjExNyA0LjI0OC00LjUxMiA2LjM1NyAxLjYwMyAyLjQzNyAzLjI3MyA0Ljk1MyA0LjIyMiA2LjExIDEuNiAxLjk1IDIuNTI1IDMuMDkyIDQuNDQyIDMuMDkyIDIuOTQzIDAgNS43MDQtMy40MTMgNS43MDQtOS4wNGguMDAxem0tMTguNzY4LjI2MmMtMS43NDctMi41MjQtMy41MDgtNS4wNTQtNC40OTYtNi4yNi0xLjYtMS45NS0yLjM5NC0zLjIzNi00LjMxMi0zLjIzNi0yLjk0IDAtNS43MDMgMy40MTMtNS43MDMgOS4wNCAwIDYuMDkxIDIuOTUzIDkuMjU1IDUuNjQgOS4yNTUgMS41MDIgMCAyLjQ0MS0uNjczIDQuMjE3LTIuNzM1IDEuMTM4LTEuMzIzIDMuMjI1LTQuMTIgNC42NTQtNi4wNjR6bTIzLjAxLS42OTljMCA4LjY4Mi00LjQ5NiAxMy42NzItOS45ODEgMTMuNjcyLTIuNzI0IDAtNS40MS0xLjU1NC03LjYyMi00LjQ2LTEuMDQ1LTEuMzY2LTIuMjMzLTMuMTIzLTMuMzExLTQuODE0LTEuMDY1IDEuNDY5LTIuODA1IDMuODIzLTQuMjYgNS41ODQtMi4wNjMgMi40OTQtNC4xMiAzLjY5LTYuODA2IDMuNjktNS4wODUgMC05Ljc4NS00LjIxOS05Ljc4NS0xMi45OTZDNjguOTMgNS4wNTMgNzMuNDI1LjI4NyA3OC45MS4yODdjMi43MjYgMCA1LjA0NSAxLjUzNSA3LjM0NyA0LjcwM2EzNzkuNzY3IDM3OS43NjcgMCAwMTMuNjEzIDUuMDVjMS4wMjQtMS42MzYgMi43NTItNC4yNzkgNC4yMzUtNi4wNiAyLjA3LTIuNDg5IDQuMTItMy42OSA2LjgwNC0zLjY5IDUuMDg2IDAgOS43ODUgNC4yMiA5Ljc4NSAxMi45OTZ2LS4wMDN6bS05NC4zNTcgOC42NEw3LjQ5Mi45N0guNjk4djI1LjU0NWg0LjE1M1Y1Ljg3bDguODk3IDIwLjY0NGg0LjczM0wyNy4zNzcgNS45M3YyMC41ODRoNC4zMTJWLjk2OWgtNi4zMzNsLTkuMDIgMjAuOTU1ek01Ny43MjkuOTdoNC44NnYyNS41NDVoLTQuMjUzVjYuODI0bC0xMy42MSAxOS42OWgtNC43NTJWLjk2OWg0LjI1NnYxOS41NzlMNTcuNzMuOTY4eiIgZmlsbD0iIzAwMCIvPjwvc3ZnPg=="
+                height="15"
+                alt="MDB Logo"
+                loading="lazy"
+              />
+            </a>
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <a className="nav-link" href="#">Книги</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Статьи</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Обзоры книг</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Отрывки из книг</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Тесты</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Интервью</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">Чек-листы</a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="d-flex align-items-center">
+            <a className="text-reset me-3" href="#">
+              <i className="fas fa-shopping-cart"></i>
+            </a>
+
+           
+          </div>
+        </div>
+      </nav>
+    );
+  }
+
+function Card(props) {
+    return (
+        <div className="col-md-4 product-card ">
+            <div></div>
+            <div className="card mb-4 bg-transparent">
+                <img src={props.image} className="card-img-top" alt={props.title} />
+                <div className="card-body">
+                    <h5 className="card-title">{props.title}</h5>
+                    <p className="card-text">{props.description}</p>
+                    <div className="text-center">
+                        <button className="btn btn-outline-success">В корзину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+function Card2({children}){
+
+    return(
+        <div class="px-4 py-5 my-5 text-center">
+            {children}</div>
+
+    );
+}
+function Title({ info }) {
+    return (
+      <Card2>
+
+        <h1 class="display-5 fw-bold text-body-emphasis">{info.titleMain}</h1>
+      </Card2>
+    );
+  }
+
+
+  const boo = [
+        { title: 'Мы купили книжный магазин', description: 'Как исполнить мечту книголюба и (почти) не сойти с ума от счастья и читателей', price: '484 руб.', image: 'https://www.mann-ivanov-ferber.ru/assets/images/covers/16/30916/1.00x-thumb.png' },
+        { title: 'Почему мы расстались', description: 'Горько-сладкий роман о первых чувствах и о том, что бывает, когда они проходят', image: 'https://www.mann-ivanov-ferber.ru/assets/images/covers/15/27115/1.00x-thumb.png' },
+        { title: 'Выбор', description: 'О свободе и внутренней силе человека', image: 'https://www.mann-ivanov-ferber.ru/assets/images/covers/46/25546/1.00x-thumb.png' },
+        { title: 'Взрослая книга о детской иллюстрации', description: 'Практические уроки от известного иллюстратора', image: 'https://www.mann-ivanov-ferber.ru/assets/images/covers/15/24715/1.00x-thumb.png' },
+        { title: 'Мастер и Маргарита', description: 'Самый популярный русский роман XX века в ярком современном оформлении', image: 'https://www.mann-ivanov-ferber.ru/assets/images/covers/87/30387/1.00x-thumb.png' },
+        { title: 'Fantastic numbers and where to find them', description: 'Сочетание популярных фактов с данными передовой наук', image: 'https://www.mann-ivanov-ferber.ru/assets/images/covers/12/29512/1.00x-thumb.png' },
+        { title: 'О чем мечтать', description: 'Как понять, чего хочешь на самом деле, и как этого добиться', image: 'https://www.mann-ivanov-ferber.ru/assets/images/covers/65/31065/1.00x-thumb.png' },
+        { title: 'Великий Гэтсби', description: 'Величайшая книга XX века в красочном оформлении NIKEL', image: 'https://www.mann-ivanov-ferber.ru/assets/images/covers/55/30555/1.00x-thumb.png' },
+        { title: 'Как выжить женщине в средневековье', description: 'Прекрасные дамы Средневеков', image: 'https://www.mann-ivanov-ferber.ru/assets/images/covers/61/30161/1.00x-thumb.png' },
+        { title: 'Что такое личные границы', description: 'Научит уважать себя и других. Для детей от 4 лет', image: 'https://www.mann-ivanov-ferber.ru/assets/images/covers/63/29463/1.00x-thumb.png' }
+    ];
+
+  const navigation = createRoot(document.getElementById('navigation'));
+  navigation.render(
+    <StrictMode>
+      <NavigationBar />
+    </StrictMode>
+  );
+
+  function books() {
+
+    const books = ReactDOM.createRoot(document.getElementById('books'));
+    books.render(
+        <div>
+            <Title
+          info={{
+            titleMain: 'Бестселлеры',
+          }}
+        />
+            <div className="row">
+                {boo.map((product, index) => (
+                    <Card
+                        key={index}
+                        title={product.title}
+                        description={product.description}
+                        price={product.price}
+                        image={product.image}
+                    />
+                ))}
+            </div>
+        </div>,
+        document.getElementById("app")
+    );
+  }
+
+  books()
+
+</script>
+
+</html>
