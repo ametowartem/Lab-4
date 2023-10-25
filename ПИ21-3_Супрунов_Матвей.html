@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Справочники персоналий</title>
+    <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    >
+    
+</head>
+<!-- <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        function App() {
+            // Пример данных (замените на реальные данные)
+            const persons = [
+                { name: "Иванов", year: 1980, profession: "Врач", photo: "1.jpg" },
+                { name: "Петров", year: 1990, profession: "Учитель", photo: "2.jpg" },
+                { name: "Сидоров", year: 2000, profession: "Преподаватель", photo: "3.jpg" },
+                { name: "Супрунов", year: 2003, profession: "Студент", photo: "4.jpg" },
+                { name: "Шарипов", year: 2002, profession: "Прораб", photo: "5.jpg" },
+                { name: "Гайдамака", year: 1970, profession: "Военный", photo: "big_penis.jpg" }
+                // Добавьте другие записи
+            ];
+
+            const [yearFilter, setYearFilter] = useState("");
+            const [professionFilter, setProfessionFilter] = useState("");
+            const [photoMode, setPhotoMode] = useState(false);
+            // Функция для отображения статистики по профессиям
+function displayStatistics() {
+    const professionCount = {};
+    for (const person of persons) {
+        if (!yearFilter || person.year === parseInt(yearFilter)) {
+            if (!professionFilter || person.profession.includes(professionFilter)) {
+                if (professionCount[person.profession]) {
+                    professionCount[person.profession]++;
+                } else {
+                    professionCount[person.profession] = 1;
+                }
+            }
+        }
+    }
+
+    const statisticsList = Object.keys(professionCount).map((profession) => (
+        <li key={profession}>
+            {profession}: {professionCount[profession]}
+        </li>
+    ));
+
+    return (
+        <div>
+            <h3>Статистика по профессиям:</h3>
+            <ul>{statisticsList}</ul>
+        </div>
+    );
+}
+
+            // Функция для отображения списка персоналий
+            function displayPersons() {
+                return persons
+                    .filter(
+                        (person) =>
+                            (!yearFilter || person.year === parseInt(yearFilter)) &&
+                            (!professionFilter || person.profession.includes(professionFilter))
+                    )
+                    .map((person) => (
+                        <li key={person.name} className="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                {photoMode && (
+                                    <img
+                                        src={person.photo}
+                                        alt={person.name}
+                                        className="mr-3"
+                                        style={{ maxWidth: "50px" }}
+                                    />
+                                )}
+                                <strong>{person.name}</strong>, Год: {person.year}, Профессия: {person.profession}
+                            </div>
+                        </li>
+                    ));
+            }
+
+            return (
+                <div className="container mt-4">
+                    <h1>Справочники персоналий</h1>
+
+                    {/* Форма для выборки (фильтра) персоналий */}
+                    <form className="form-inline mb-3">
+                        <div className="form-group mr-3">
+                            <label htmlFor="filter-year" className="mr-2">Фильтр по году:</label>
+                            <input
+                                type="number"
+                                id="filter-year"
+                                value={yearFilter}
+                                onChange={(e) => setYearFilter(e.target.value)}
+                                className="form-control"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="filter-profession" className="mr-2">Фильтр по профессии:</label>
+                            <input
+                                type="text"
+                                id="filter-profession"
+                                value={professionFilter}
+                                onChange={(e) => setProfessionFilter(e.target.value)}
+                                className="form-control"
+                            />
+                        </div>
+
+                        <button type="button" onClick={displayPersons} className="btn btn-dark ml-3">
+                            Применить фильтр
+                        </button>
+                    </form>
+
+                    {/* Кнопка для переключения режима отображения фотографий */}
+                    <div className="form-check mb-3">
+                        <input
+                            type="checkbox"
+                            checked={photoMode}
+                            onChange={() => setPhotoMode(!photoMode)}
+                            className="form-check-input"
+                            id="photo-mode"
+                        />
+                        <label htmlFor="photo-mode" className="form-check-label">
+                            Переключить режим отображения фотографий
+                        </label>
+                    </div>
+
+                    {/* Список персоналий */}
+                    <ul className="list-group">{displayPersons()}</ul>
+                    {/* Статистика */}
+                    {displayStatistics()}
+                </div>
+            );
+        }
+        ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+</body> -->
+
+<!-- <body>
+    <div id="root"></div>
+  
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+  
+    <script type="text/babel">
+      const { useState, Component } = React;
+  
+      // Функциональный компонент
+      function FilterForm({ yearFilter, professionFilter, setYearFilter, setProfessionFilter }) {
+        return (
+          <form className="form-inline mb-3">
+            <div className="form-group mr-3">
+              <label htmlFor="filter-year" className="mr-2">Фильтр по году:</label>
+              <input
+                type="number"
+                id="filter-year"
+                value={yearFilter}
+                onChange={(e) => setYearFilter(e.target.value)}
+                className="form-control"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="filter-profession" className="mr-2">Фильтр по профессии:</label>
+              <input
+                type="text"
+                id="filter-profession"
+                value={professionFilter}
+                onChange={(e) => setProfessionFilter(e.target.value)}
+                className="form-control"
+              />
+            </div>
+          </form>
+        );
+      }
+  
+      // Компонент класса ES6
+      class TogglePhotoMode extends Component {
+        render() {
+          const { photoMode, setPhotoMode } = this.props;
+          return (
+            <div className="form-check mb-3">
+              <input
+                type="checkbox"
+                checked={photoMode}
+                onChange={() => setPhotoMode(!photoMode)}
+                className="form-check-input"
+                id="photo-mode"
+              />
+              <label htmlFor="photo-mode" className="form-check-label">
+                Переключить режим отображения фотографий
+              </label>
+            </div>
+          );
+        }
+      }
+  
+      // Функциональный компонент с передачей данных
+      function Statistics({ persons, yearFilter, professionFilter }) {
+        const professionCount = {};
+  
+        for (const person of persons) {
+          if ((!yearFilter || person.year === parseInt(yearFilter)) &&
+            (!professionFilter || person.profession.includes(professionFilter))) {
+            if (professionCount[person.profession]) {
+              professionCount[person.profession]++;
+            } else {
+              professionCount[person.profession] = 1;
+            }
+          }
+        }
+  
+        const statisticsList = Object.keys(professionCount).map((profession) => (
+          <li key={profession}>
+            {profession}: {professionCount[profession]}
+          </li>
+        ));
+  
+        return (
+          <div>
+            <h3>Статистика по профессиям:</h3>
+            <ul>{statisticsList}</ul>
+          </div>
+        );
+      }
+  
+      // Функциональный компонент с передачей данных
+      function PersonsList({ persons, yearFilter, professionFilter, photoMode }) {
+        return (
+          <ul className="list-group">
+            {persons
+              .filter(
+                (person) =>
+                  (!yearFilter || person.year === parseInt(yearFilter)) &&
+                  (!professionFilter || person.profession.includes(professionFilter))
+              )
+              .map((person) => (
+                <li key={person.name} className="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    {photoMode && (
+                      <img
+                        src={person.photo}
+                        alt={person.name}
+                        className="mr-3"
+                        style={{ maxWidth: "50px" }}
+                      />
+                    )}
+                    <strong>{person.name}</strong>, Год: {person.year}, Профессия: {person.profession}
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        );
+      }
+  
+      // Главный компонент
+      function App() {
+        // Пример данных (замените на реальные данные)
+        const persons = [
+          { name: "Иванов", year: 1980, profession: "Врач", photo: "1.jpg" },
+          { name: "Петров", year: 1990, profession: "Учитель", photo: "2.jpg" },
+          { name: "Сидоров", year: 2000, profession: "Преподаватель", photo: "3.jpg" },
+          { name: "Супрунов", year: 2003, profession: "Студент", photo: "4.jpg" },
+          { name: "Шарипов", year: 2002, profession: "Прораб", photo: "5.jpg" },
+          { name: "Гайдамака", year: 1970, profession: "Военный", photo: "big_penis.jpg" }
+          // Добавьте другие записи
+        ];
+  
+        const [yearFilter, setYearFilter] = useState("");
+        const [professionFilter, setProfessionFilter] = useState("");
+        const [photoMode, setPhotoMode] = useState(false);
+  
+        return (
+          <div className="container mt-4">
+            <h1>Справочники персоналий</h1>
+  
+            <FilterForm
+              yearFilter={yearFilter}
+              professionFilter={professionFilter}
+              setYearFilter={setYearFilter}
+              setProfessionFilter={setProfessionFilter}
+            />
+  
+            <TogglePhotoMode photoMode={photoMode} setPhotoMode={setPhotoMode} />
+  
+            <PersonsList
+              persons={persons}
+              yearFilter={yearFilter}
+              professionFilter={professionFilter}
+              photoMode={photoMode}
+            />
+  
+            <Statistics
+              persons={persons}
+              yearFilter={yearFilter}
+              professionFilter={professionFilter}
+            />
+          </div>
+        );
+      }
+  
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+</body> -->
+
+<body>
+    <div id="root"></div>
+  
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+  
+    <script type="text/babel">
+      const { useState, Component } = React;
+
+            // Функциональный компонент
+      function FilterFormYear({ yearFilter, setYearFilter}) {
+      return (
+        <form className="form-inline mb-3">
+          <div className="form-group">
+            <label htmlFor="filter-year" className="mr-2">Filter by year:</label>
+            <input
+              type="number"
+              id="filter-year"
+              value={yearFilter}
+              onChange={(e) => setYearFilter(e.target.value)}
+              className="form-control"
+            />
+          </div>
+        </form>
+      );
+    }
+
+    function FilterFormSearch({searchFilter, setSearchFilter }) {
+      return (
+        <form className="form-inline my-2 my-lg-0 ml-auto">
+          <div className="form-group">
+            <label htmlFor="filter-search" className="mr-2" style={{ color: "white" }}>Search:</label>
+            <input
+              type="text"
+              id="filter-search"
+              value={searchFilter}
+              onChange={(e) => setSearchFilter(e.target.value)}
+              className="form-control"
+            />
+          </div>
+        </form>
+      );
+    }
+  
+      // Компонент класса ES6
+      class TogglePhotoMode extends Component {
+        render() {
+          const { photoMode, setPhotoMode } = this.props;
+          return (
+            <div className="form-check mb-3">
+              <input
+                type="checkbox"
+                checked={photoMode}
+                onChange={() => setPhotoMode(!photoMode)}
+                className="form-check-input"
+                id="photo-mode"
+              />
+              <label htmlFor="photo-mode" className="form-check-label">
+                Переключить режим отображения фотографий
+              </label>
+            </div>
+          );
+        }
+      }
+  
+      function BookCard({ book, photoMode }) {
+        return (
+          <div className="col-md-3 mb-3">
+            <div className="card">
+              {photoMode && (
+                <img
+                  src={book.photo}
+                  alt={book.name}
+                  className="card-img-top"
+                />
+              )}
+              <div className="card-body">
+                <h5 className="card-title">{book.name}</h5>
+                <p className="card-text">Год: {book.year}</p>
+                <p className="card-text">Жанр: {book.genre}</p>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      function BookCardd({ book, photoMode }) {
+        return (
+          <div className="col-md-2 mb-3">
+            <div className="card">
+              {photoMode && (
+                <img
+                  src={book.photo}
+                  alt={book.name}
+                  className="card-img-top"
+                />
+              )}
+              <div className="card-body">
+                <h5 className="card-title">{book.name}</h5>
+                <p className="card-text">Год: {book.year}</p>
+                <p className="card-text">Жанр: {book.genre}</p>
+              </div>
+            </div>
+          </div>
+        );
+      }
+  
+      function BooksList({ books, yearFilter, searchFilter, photoMode }) {
+        const filteredBooks = books.filter(
+          (book) =>
+            (!yearFilter || book.year === parseInt(yearFilter)) &&
+            (!searchFilter || book.genre.includes(searchFilter))
+        );
+  
+        return (
+          <div className="row">
+            {filteredBooks.map((book, index) => (
+              <BookCard
+                key={index}
+                book={book}
+                photoMode={photoMode}
+              />
+            ))}
+          </div>
+        );
+      }
+
+      function BooksListt({ books, yearFilter, searchFilter, photoMode }) {
+        const filteredBooks = books.filter(
+          (book) =>
+            (!yearFilter || book.year === parseInt(yearFilter)) &&
+            (!searchFilter || book.genre.includes(searchFilter))
+        );
+  
+        return (
+          <div className="row">
+            {filteredBooks.map((book, index) => (
+              <BookCardd
+                key={index}
+                book={book}
+                photoMode={photoMode}
+              />
+            ))}
+          </div>
+        );
+      }
+      // Функциональный компонент с передачей данных
+      function Statistics({ books, yearFilter, searchFilter }) {
+        const genreCount = {};
+  
+        for (const book of books) {
+          if ((!yearFilter || book.year === parseInt(yearFilter)) &&
+            (!searchFilter || book.genre.includes(searchFilter))) {
+            if (genreCount[book.genre]) {
+                genreCount[book.genre]++;
+            } else {
+                genreCount[book.genre] = 1;
+            }
+          }
+        }
+  
+        const statisticsList = Object.keys(genreCount).map((genre) => (
+          <li key={genre}>
+            {genre}: {genreCount[genre]}
+          </li>
+        ));
+  
+        return (
+          <div>
+            <h3>Statistics by books genres:</h3>
+            <ul>{statisticsList}</ul>
+          </div>
+        );
+      }
+  
+      function App() {
+        const books = [
+          { name: "Портрет Дориана Грея", year: 1980, genre: "Биографический", photo: "1.jpg" },
+          { name: "По ком звонит колокол", year: 1990, genre: "Военный", photo: "2.jpg" },
+          { name: "Старик и море", year: 2000, genre: "Приключения", photo: "3.jpg" },
+          { name: "Прощай, оружие!", year: 2003, genre: "Военный", photo: "4.jpg" },
+          { name: "Три товарища", year: 2002, genre: "Детектив", photo: "5.jpg" },
+          { name: "451 градус", year: 1970, genre: "Детектив", photo: "6.jpg" },
+          { name: "Время жить и время умирать", year: 1975, genre: "Военный", photo: "7.jpg" },
+          { name: "Земля обетованная", year: 1971, genre: "Драма", photo: "8.jpg" },
+          { name: "На западном фронте без перемен", year: 1976, genre: "Военный", photo: "9.jpg" },
+          { name: "Жизнь взаймы", year: 1980, genre: "Драма", photo: "10.jpg" },
+          { name: "Идиот", year: 1980, genre: "Драма", photo: "11.jpg" },
+          { name: "Преступление и наказание", year: 1988, genre: "Детектив", photo: "12.jpg" },
+          // Добавьте другие записи
+        ];
+  
+        const [yearFilter, setYearFilter] = useState("");
+        const [searchFilter, setSearchFilter] = useState("");
+        const [photoMode, setPhotoMode] = useState(false);
+  
+        return (
+
+        <div>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a className="navbar-brand" href="#">Книжный магазин</a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav">
+                <li className="nav-item active">
+                  <a className="nav-link" href="#">Домой <span className="sr-only">(current)</span></a>
+                </li>
+              </ul>
+              <FilterFormSearch
+                searchFilter={searchFilter}
+                setSearchFilter={setSearchFilter}
+              />
+            </div>
+          </nav>
+          <div className="container mt-4">
+            <h1>Top sellers</h1>
+  
+            <FilterFormYear
+              yearFilter={yearFilter}
+              setYearFilter={setYearFilter}
+            />
+  
+            <TogglePhotoMode photoMode={photoMode} setPhotoMode={setPhotoMode} />
+  
+            <BooksList
+            books={books}
+              yearFilter={yearFilter}
+              searchFilter={searchFilter}
+              photoMode={photoMode}
+            />
+  
+            <Statistics
+              books={books}
+              yearFilter={yearFilter}
+              searchFilter={searchFilter}
+            />
+          </div>
+          <div className="containerr mt-4">
+            <h1>Bookstore</h1>
+  
+            <TogglePhotoMode photoMode={photoMode} setPhotoMode={setPhotoMode} />
+  
+            <BooksListt
+              books={books}
+              yearFilter={yearFilter}
+              searchFilter={searchFilter}
+              photoMode={photoMode}
+            />
+            </div>
+  
+        </div>
+        );
+      }
+  
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+</body>
+</html>
