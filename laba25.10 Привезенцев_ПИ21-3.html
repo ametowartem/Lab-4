@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+</head>
+
+<body style="background-image: https://i.pinimg.com/originals/67/18/22/671822c2f63dd5f65d8fd15c9710420b.jpg">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" style="font-family:Verdana, Geneva, Tahoma, sans-serif">Ќнижки-Ќнижечки</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Домой <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Каталог
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Жанр</a>
+                <a class="dropdown-item" href="#"> Автор</a>
+                <a class="dropdown-item" href="#"> Издательство</a>
+              </div>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Поиск..." aria-label="Поиск...">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+          </form>
+        </div>
+      </nav>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Книги</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Иностранные <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Жанр</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Цена</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+<div id="app"></div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js" data-presets="react,es2015,stage-2"
+        data-plugins="transform-modules-umd"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react?dev",
+        "react-dom/client": "https://esm.sh/react-dom/client?dev"
+      }
+    }
+</script>
+<script type="text/babel" data-type="module">
+
+    import React from 'react';
+    import { createRoot } from 'react-dom/client';
+
+    function Avatar({ person, size=100 }) {
+        return (
+            <div className="avatar-container">
+                <img
+                    className="avatar"
+                    src={person.imageId}
+                    alt={person.name}
+                    author={person.author}
+                    price={person.price}
+                    
+                    width={size+20}
+                    height={size+80}
+                />
+                <p className="avatar-name">{person.name}</p>
+                <p className="avatar-author">{person.author}</p>
+                <p className="avatar-price">{person.price}</p>
+                <button class="btn btn-primary">Купить</button>
+            </div>
+        );
+    }
+    function Avatar2({ person, size=200 }) {
+        return (
+            <div className="avatar-container">
+                <img
+                    className="avatar"
+                    src={person.imageId}
+                    alt={person.name}
+                    author={person.author}
+                    price={person.price}
+                    
+                    width={size}
+                    height={size+100}
+                />
+                <p className="avatar-name">{person.name}</p>
+                <p className="avatar-author">{person.author}</p>
+                <p className="avatar-price">{person.price}</p>
+                <button class="btn btn-primary">Купить</button>
+            </div>
+        );
+    }
+    function Card({children}){
+        return (
+            <div className="avatar-row">
+                {children}
+            </div>
+        )
+    }
+    function Profile() {
+        return (
+            <div>
+                <h1>Топ месяца</h1>
+                <Card>
+                    <Avatar
+                        person={{
+                            
+                            name: 'Властелин колец',
+                            author: 'Джон Р.P',
+                            imageId:'https://cdn.img-gorod.ru/310x500/nomenclature/24/233/2423346.jpg',
+                            price:'899p',
+                        }}
+                    />
+                    <Avatar
+                        person={{
+                            
+                            name: 'Гарри Поттер и узник Азкабана',
+                            author: 'Джоан Роулинг',
+                            imageId:'https://s1.livelib.ru/boocover/1003317448/o/2954/Dzhoan_Rouling__Garri_Potter_i_uznik_Azkabana.jpeg',
+                            price:'799p'    
+                        }}
+                    
+                    />
+                    <Avatar
+                        person={{
+                            
+                            name: 'Зелёная миля',
+                            author: 'Стивен Кинг',
+                            imageId:'https://s1.livelib.ru/boocover/1000966838/o/7df1/Stiven_King__Zeljonaya_milya.jpeg',
+                            price:'689p'    
+                        }}
+                    
+                    />
+                    <Avatar
+                        person={{
+                            
+                            name: 'Унесенные ветром',
+                            author: 'Маргарет Митчелл',
+                            imageId:'https://s1.livelib.ru/boocover/1003634473/o/3ca5/Margaret_Mitchell__Unesennye_vetrom.jpeg',
+                            price:'500p'    
+                        }}
+                    
+                    />
+                    
+                </Card>
+                <h1>Новинки</h1>
+                <div className="avatar-row">
+                    <Avatar2
+                        person={{
+                            name: 'Тайные виды на гору Фудзи',
+                            author: 'Виктор Пелевин',
+                            imageId:'https://upload.wikimedia.org/wikipedia/ru/f/fc/Тайные_виды_на_гору_Фудзи.png',
+                            price:'850p'
+                        }}
+                    />
+                    <Avatar2
+                        person={{
+                            name: 'Путешествие в Элевсин',
+                            author: 'Виктор Пелевин',
+                            imageId:'https://cv6.litres.ru/pub/c/cover_max1500/69586360.jpg',
+                            price:'999p'
+                        }}
+                    />
+                    
+                </div>
+            </div>
+        );
+    }
+
+    createRoot(document.getElementById('app')).render(<Profile />);
+</script>
+<style>
+
+    body{
+        background-image:'https://i.pinimg.com/originals/67/18/22/671822c2f63dd5f65d8fd15c9710420b.jpg';
+    }
+    h1{
+        padding-left: 40%;
+    }
+
+
+    .avatar-row {
+        display: flex;
+        margin-bottom: 5%;
+        justify-content: space-around;
+    }
+
+    .avatar-container {
+        margin-right: 10px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color: #dfdcf5;
+    }
+
+    th,
+    td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f3ddf6;
+    }
+
+
+</style>
+</body>
+</html>
